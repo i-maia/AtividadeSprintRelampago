@@ -1,5 +1,6 @@
 from django.db import models
 
+<<<<<<< HEAD
 class Tarefa(models.Model):
     titulo = models.CharField(max_length=200)
     prioridade = models.CharField(
@@ -12,3 +13,13 @@ class Tarefa(models.Model):
 
     def __str__(self):
         return f"{self.titulo} - {self.projeto.nome}"
+=======
+# Create your models here.
+class Projeto(models.Model):
+    nome = models.CharField(max_length=100)
+    descricao = models.TextField()
+    data_inicio = models.DateField()
+
+    def __str__(self):
+        return self.nome
+>>>>>>> main
