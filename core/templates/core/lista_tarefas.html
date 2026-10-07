@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tarefas</title>
+</head>
+<body>
+    <h1>Minhas Tarefas</h1>
+    <a href="{% url 'criar_tarefa' %}">Criar Nova Tarefa</a>
+    
+    <ul>
+        {% for tarefa in tarefas %}
+            <li>{{ tarefa.titulo }} - Prioridade: {{ tarefa.prioridade }} (Projeto: {{ tarefa.projeto.nome }})</li>
+        {% empty %}
+            <li>Ainda não existem tarefas cadastradas.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
