@@ -1,19 +1,57 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Tarefas</title>
+    <title>Gestão de Tarefas</title>
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
 </head>
 <body>
-    <h1>Minhas Tarefas</h1>
-    <a href="{% url 'criar_tarefa' %}">Criar Nova Tarefa</a>
-    
-    <ul>
-        {% for tarefa in tarefas %}
-            <li>{{ tarefa.titulo }} - Prioridade: {{ tarefa.prioridade }} (Projeto: {{ tarefa.projeto.nome }})</li>
-        {% empty %}
-            <li>Ainda não existem tarefas cadastradas.</li>
-        {% endfor %}
-    </ul>
+    <h1>Gestão de Tarefas</h1>
+
+    <!-- Secção de Ação / Atalho -->
+    <div class="card">
+        <div class="card-header-blue">Ações</div>
+        <div class="card-body">
+            <a href="{% url 'criar_tarefa' %}" class="btn-green">+ Nova Tarefa</a>
+            <a href="/projetos/" style="margin-left: 15px; color: #007bff; text-decoration: none;">Ver Projetos</a>
+        </div>
+    </div>
+
+    <!-- Lista de Tarefas Cadastradas -->
+    <div class="card">
+        <div class="card-header-gray">Lista de Tarefas Cadastradas</div>
+        <div class="card-body" style="padding: 0;">
+            {% if tarefas %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Prioridade</th>
+                            <th>Projeto</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tarefa in tarefas %}
+                            <tr>
+                                <td>{{ tarefa.titulo }}</td>
+                                <td>{{ tarefa.prioridade }}</td>
+                                <td>{{ tarefa.projeto.nome }}</td>
+                                <td>{% if tarefa.concluido %}Concluído{% else %}Pendente{% endif %}</td>
+                                <td class="actions">
+                                    <a href="{% url 'editar_tarefa' tarefa.id %}">Editar</a>
+                                    <a href="{% url 'excluir_tarefa' tarefa.id %}" style="color: #dc3545;">Excluir</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p style="padding: 20px; margin: 0; color: #666;">Nenhuma tarefa cadastrada.</p>
+            {% endif %}
+        </div>
+    </div>
 </body>
 </html>

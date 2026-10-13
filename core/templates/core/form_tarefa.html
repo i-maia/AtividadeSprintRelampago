@@ -1,17 +1,25 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Formulário de Tarefa</title>
+    <title>Registar Tarefa</title>
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
 </head>
 <body>
-    <h1>Registar / Editar Tarefa</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Salvar</button>
-    </form>
-    <br>
-    <a href="{% url 'lista_tarefas' %}">Voltar para a lista</a>
+    <h1>Gestão de Tarefas</h1>
+
+    <div class="card">
+        <div class="card-header-blue">Cadastrar Nova Tarefa</div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn-green">Salvar Tarefa</button>
+            </form>
+        </div>
+    </div>
+
+    <a href="{% url 'lista_tarefas' %}" style="color: #007bff; text-decoration: none;">&larr; Voltar para a lista de tarefas</a>
 </body>
 </html>
