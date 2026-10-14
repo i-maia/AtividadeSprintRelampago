@@ -6,6 +6,9 @@ from .models import Tarefa
 from .forms import TarefaForm
 # Create your views here.
 
+def base(request):
+    return render(request, 'core/base.html')
+
 def listar_projetos(request):
     projetos = Projeto.objects.all().order_by('-data_inicio')
 
