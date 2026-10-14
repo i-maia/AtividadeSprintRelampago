@@ -10,7 +10,9 @@
 
 <body class="container py-4">
 
-    <h1>Gestão de Projetos</h1>
+    <h1> 
+        <a href="{% url 'base' %}">Gestão de Projetos</a>
+    </h1>
     
     <!-- Formulário de Cadastro -->
     <div class="card mb-4 shadow-sm">
@@ -22,6 +24,7 @@
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit" class="btn btn-success">Salvar Projeto</button>
+                <a href="/tarefas/" style="margin-left: 15px; color: #007bff; text-decoration: none;">Ver Tarefas</a>
             </form>
         </div>
     </div>
